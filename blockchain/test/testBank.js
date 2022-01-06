@@ -22,7 +22,7 @@ describe("Bank App", () => {
         it("should be totalAssets Of 0", async () => {
             expect(await bank.totalAssets()).to.equal('0')
         });
-        it("should have 0 token, and 0 deposit in auther account", async () => {
+        it("should have 0 token, and 0 deposit in owner account", async () => {
             expect(await bank.accounts(owner.address)).to.equal('0');
             expect(await token.balanceOf(owner.address)).to.equal("0");
         });
