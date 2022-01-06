@@ -3,7 +3,7 @@ const { ethers } = require("hardhat");
 
 describe("Bank App", () => {
 
-    let bank, token, authur, address_1, address_2;
+    let bank, token, owner, address_1, address_2;
     let addressess;
 
     beforeEach(async () => {
@@ -15,7 +15,7 @@ describe("Bank App", () => {
         token = await tokenContract.deploy(bank.address);
         await token.deployed();
 
-        [authur, address_1, address_2, ...addressess] = await ethers.getSigners();
+        [owner, address_1, address_2, ...addressess] = await ethers.getSigners();
     });
 
     describe("Deployment", () => {
@@ -23,8 +23,8 @@ describe("Bank App", () => {
             expect(await bank.totalAssets()).to.equal('0')
         });
         it("should have 0 token, and 0 deposit in auther account", async () => {
-            expect(await bank.accounts(authur.address)).to.equal('0');
-            expect(await token.balanceOf(authur.address)).to.equal("0");
+            expect(await bank.accounts(owner.address)).to.equal('0');
+            expect(await token.balanceOf(owner.address)).to.equal("0");
         });
         it("should have 0 token, and 0 deposit in address_1 account", async () => {
             expect(await bank.accounts(address_1.address)).to.equal('0');
